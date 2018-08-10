@@ -11,5 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .stylus('resources/assets/styl/app.styl', 'public/css');
+
+mix.disableNotifications();
+
+mix.browserSync('localhost:17900');
