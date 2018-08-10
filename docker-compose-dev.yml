@@ -1,0 +1,11 @@
+version: '2'
+services:
+    wimple:
+        container_name: wimple-dev
+        image: webdevops/php-apache-dev:debian-9
+        volumes:
+            - ./:/var/www
+        ports:
+            - "19400:80"
+        environment:
+            WEB_DOCUMENT_ROOT: /var/www/public
