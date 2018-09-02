@@ -4741,6 +4741,7 @@ p {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   margin: 0;
+  height: 100%;
 }
 .v-btn--floating:after {
   border-radius: 50%;
@@ -5543,8 +5544,7 @@ p {
   padding: 0 !important;
 }
 .v-datatable__progress th .v-progress-linear {
-  top: -2px;
-  margin: 0 0 -2px;
+  margin: 0;
 }
 .v-datatable__expand-row {
   border: none !important;
@@ -9172,8 +9172,10 @@ p {
   color: rgba(0,0,0,0.87);
 }
 .v-select {
-  cursor: pointer;
   position: relative;
+}
+.v-select > .v-input__control > .v-input__slot {
+  cursor: pointer;
 }
 .v-select .v-menu {
   -webkit-box-flex: 1;
@@ -10990,6 +10992,7 @@ table.v-table tfoot tr td {
   line-height: 20px;
   padding: 8px 0 8px;
   max-width: 100%;
+  min-width: 0px;
   width: 100%;
 }
 .v-text-field .v-input__prepend-inner,
@@ -11033,12 +11036,13 @@ table.v-table tfoot tr td {
   -webkit-transform: translateY(-18px) scale(0.75);
           transform: translateY(-18px) scale(0.75);
 }
-.v-text-field .v-input__slot {
+.v-text-field > .v-input__control > .v-input__slot {
+  cursor: text;
   -webkit-transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   transition: background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 }
-.v-text-field .v-input__slot:before,
-.v-text-field .v-input__slot:after {
+.v-text-field > .v-input__control > .v-input__slot:before,
+.v-text-field > .v-input__control > .v-input__slot:after {
   bottom: -1px;
   content: '';
   left: 0;
@@ -11047,11 +11051,11 @@ table.v-table tfoot tr td {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   width: 100%;
 }
-.v-text-field .v-input__slot:before {
+.v-text-field > .v-input__control > .v-input__slot:before {
   border-style: solid;
   border-width: thin 0 0 0;
 }
-.v-text-field .v-input__slot:after {
+.v-text-field > .v-input__control > .v-input__slot:after {
   border-color: currentColor;
   border-style: solid;
   border-width: thin 0 thin 0;

@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 10);
@@ -13447,11 +13447,6 @@ __webpack_require__.r(__webpack_exports__);
         onInternalSearchChanged: function onInternalSearchChanged(val) {
             this.updateMenuDimensions();
         },
-        activateMenu: function activateMenu() {
-            if (this.menuCanShow) {
-                this.isMenuActive = true;
-            }
-        },
         updateMenuDimensions: function updateMenuDimensions() {
             if (this.isMenuActive && this.$refs.menu) {
                 this.$refs.menu.updateDimensions();
@@ -14598,11 +14593,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stylus_components_carousel_styl__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylus_components_carousel_styl__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
 /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
-/* harmony import */ var _mixins_bootable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/bootable */ "./src/mixins/bootable.ts");
-/* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable.ts");
-/* harmony import */ var _mixins_registrable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/registrable */ "./src/mixins/registrable.ts");
-/* harmony import */ var _directives_touch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../directives/touch */ "./src/directives/touch.ts");
-
+/* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable.ts");
+/* harmony import */ var _mixins_registrable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/registrable */ "./src/mixins/registrable.ts");
+/* harmony import */ var _directives_touch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../directives/touch */ "./src/directives/touch.ts");
 
 
 
@@ -14612,8 +14605,8 @@ __webpack_require__.r(__webpack_exports__);
 /* @vue/component */
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'v-carousel',
-    directives: { Touch: _directives_touch__WEBPACK_IMPORTED_MODULE_6__["default"] },
-    mixins: [_mixins_bootable__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_mixins_registrable__WEBPACK_IMPORTED_MODULE_5__["provide"])('carousel')],
+    directives: { Touch: _directives_touch__WEBPACK_IMPORTED_MODULE_5__["default"] },
+    mixins: [_mixins_themeable__WEBPACK_IMPORTED_MODULE_3__["default"], Object(_mixins_registrable__WEBPACK_IMPORTED_MODULE_4__["provide"])('carousel')],
     props: {
         cycle: {
             type: Boolean,
@@ -20506,6 +20499,9 @@ __webpack_require__.r(__webpack_exports__);
             if (this.permanent) return;
             if (val == null) return this.init();
             if (val !== this.isActive) this.isActive = val;
+        },
+        applicationProperty: function applicationProperty(newVal, oldVal) {
+            this.$vuetify.application.unbind(this._uid, oldVal);
         }
     },
     beforeMount: function beforeMount() {
@@ -22610,7 +22606,7 @@ var fakeMenuable = {
                 });
                 // If user is clicking in the container
                 // and field is enclosed, activate it
-            } else if (this.isEnclosed) {
+            } else if (this.isEnclosed && !this.isDisabled) {
                 this.isMenuActive = true;
             }
             _VTextField_VTextField__WEBPACK_IMPORTED_MODULE_5__["default"].methods.onMouseUp.call(this, e);
@@ -25605,7 +25601,7 @@ var dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', 'mo
         },
         /** @public */
         blur: function blur() {
-            this.onBlur();
+            this.$refs.input ? this.$refs.input.blur() : this.onBlur();
         },
         clearableCallback: function clearableCallback() {
             var _this = this;
@@ -25767,12 +25763,7 @@ var dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', 'mo
             _VInput__WEBPACK_IMPORTED_MODULE_1__["default"].methods.onMouseDown.call(this, e);
         },
         onMouseUp: function onMouseUp(e) {
-            // Default click handler is on slot,
-            // Mouse events are to enable specific
-            // input types when clicked
-            if ((this.isSolo || this.hasOutline) && document.activeElement !== this.$refs.input) {
-                this.$refs.input.focus();
-            }
+            this.focus();
             _VInput__WEBPACK_IMPORTED_MODULE_1__["default"].methods.onMouseUp.call(this, e);
         }
     }
@@ -27069,14 +27060,16 @@ _VTooltip__WEBPACK_IMPORTED_MODULE_0__["default"].install = function install(Vue
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkVueVersion", function() { return checkVueVersion; });
-/* harmony import */ var _mixins_application__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/application */ "./src/components/Vuetify/mixins/application.ts");
-/* harmony import */ var _mixins_breakpoint__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/breakpoint */ "./src/components/Vuetify/mixins/breakpoint.ts");
-/* harmony import */ var _mixins_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixins/theme */ "./src/components/Vuetify/mixins/theme.ts");
-/* harmony import */ var _mixins_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mixins/icons */ "./src/components/Vuetify/mixins/icons.js");
-/* harmony import */ var _mixins_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins/options */ "./src/components/Vuetify/mixins/options.js");
-/* harmony import */ var _mixins_lang__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mixins/lang */ "./src/components/Vuetify/mixins/lang.ts");
-/* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_application__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/application */ "./src/components/Vuetify/mixins/application.ts");
+/* harmony import */ var _mixins_breakpoint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixins/breakpoint */ "./src/components/Vuetify/mixins/breakpoint.ts");
+/* harmony import */ var _mixins_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mixins/theme */ "./src/components/Vuetify/mixins/theme.ts");
+/* harmony import */ var _mixins_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins/icons */ "./src/components/Vuetify/mixins/icons.js");
+/* harmony import */ var _mixins_options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mixins/options */ "./src/components/Vuetify/mixins/options.js");
+/* harmony import */ var _mixins_lang__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mixins/lang */ "./src/components/Vuetify/mixins/lang.ts");
 /* harmony import */ var _util_goTo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/goTo */ "./src/components/Vuetify/util/goTo.js");
+/* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
 
 
 
@@ -27084,6 +27077,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// Utils
 
 var Vuetify = {
     install: function install(Vue, opts) {
@@ -27092,18 +27087,21 @@ var Vuetify = {
         }
         if (this.installed) return;
         this.installed = true;
+        if (vue__WEBPACK_IMPORTED_MODULE_0___default.a !== Vue) {
+            Object(_util_console__WEBPACK_IMPORTED_MODULE_8__["consoleError"])('Multiple instances of Vue detected\nSee https://github.com/vuetifyjs/vuetify/issues/4068\n\nIf you\'re seeing "$attrs is readonly", it\'s caused by this');
+        }
         checkVueVersion(Vue);
-        var lang = Object(_mixins_lang__WEBPACK_IMPORTED_MODULE_5__["default"])(opts.lang);
+        var lang = Object(_mixins_lang__WEBPACK_IMPORTED_MODULE_6__["default"])(opts.lang);
         Vue.prototype.$vuetify = new Vue({
-            mixins: [_mixins_breakpoint__WEBPACK_IMPORTED_MODULE_1__["default"]],
+            mixins: [_mixins_breakpoint__WEBPACK_IMPORTED_MODULE_2__["default"]],
             data: {
-                application: _mixins_application__WEBPACK_IMPORTED_MODULE_0__["default"],
+                application: _mixins_application__WEBPACK_IMPORTED_MODULE_1__["default"],
                 dark: false,
-                icons: Object(_mixins_icons__WEBPACK_IMPORTED_MODULE_3__["default"])(opts.iconfont, opts.icons),
+                icons: Object(_mixins_icons__WEBPACK_IMPORTED_MODULE_4__["default"])(opts.iconfont, opts.icons),
                 lang: lang,
-                options: Object(_mixins_options__WEBPACK_IMPORTED_MODULE_4__["default"])(opts.options),
+                options: Object(_mixins_options__WEBPACK_IMPORTED_MODULE_5__["default"])(opts.options),
                 rtl: opts.rtl,
-                theme: Object(_mixins_theme__WEBPACK_IMPORTED_MODULE_2__["default"])(opts.theme)
+                theme: Object(_mixins_theme__WEBPACK_IMPORTED_MODULE_3__["default"])(opts.theme)
             },
             methods: {
                 goTo: _util_goTo__WEBPACK_IMPORTED_MODULE_7__["default"],
@@ -27128,7 +27126,7 @@ var Vuetify = {
             });
         }
     },
-    version: '1.1.10'
+    version: '1.1.12'
 };
 function checkVueVersion(Vue, requiredVue) {
     var vueDep = requiredVue || '^2.5.10';
@@ -27144,7 +27142,7 @@ function checkVueVersion(Vue, requiredVue) {
     actual[1] === required[1] && actual[2] >= required[2] // or minor is eq and patch is >=
     );
     if (!passes) {
-        Object(_util_console__WEBPACK_IMPORTED_MODULE_6__["consoleWarn"])("Vuetify requires Vue version " + vueDep);
+        Object(_util_console__WEBPACK_IMPORTED_MODULE_8__["consoleWarn"])("Vuetify requires Vue version " + vueDep);
     }
 }
 /* harmony default export */ __webpack_exports__["default"] = (Vuetify);
@@ -28546,7 +28544,7 @@ var Vuetify = {
         Vue.use(VuetifyComponent, __assign({ components: _components__WEBPACK_IMPORTED_MODULE_1__,
             directives: _directives__WEBPACK_IMPORTED_MODULE_2__ }, args));
     },
-    version: '1.1.10'
+    version: '1.1.12'
 };
 if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(Vuetify);
@@ -30817,9 +30815,6 @@ __webpack_require__.r(__webpack_exports__);
             }
             return this.valueComparator(input, this.trueValue);
         },
-        isDisabled: function isDisabled() {
-            return this.disabled;
-        },
         isDirty: function isDirty() {
             return this.isActive;
         }
@@ -31277,7 +31272,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return this.validations.length > 0;
         },
         hasState: function hasState() {
-            return this.shouldValidate && (this.hasError || this.hasSuccess);
+            return this.hasSuccess || this.shouldValidate && this.hasError;
         },
         internalErrorMessages: function internalErrorMessages() {
             return this.errorMessages || '';
@@ -31290,7 +31285,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         },
         validationState: function validationState() {
             if (this.hasError && this.shouldValidate) return 'error';
-            if (this.hasSuccess && this.shouldValidate) return 'success';
+            if (this.hasSuccess) return 'success';
             if (this.hasColor) return this.color;
             return null;
         },
