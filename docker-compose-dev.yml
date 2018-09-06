@@ -2,7 +2,7 @@ version: '2'
 services:
     wimple:
         container_name: wimple-dev
-        image: webdevops/php-apache-dev:debian-9
+        image: webdevops/php-apache-dev:7.2
         volumes:
             - ./:/var/www
         ports:

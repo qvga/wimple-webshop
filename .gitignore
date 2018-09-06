@@ -12,3 +12,10 @@ yarn-error.log
 .env
 .phpstorm.meta.php
 _ide_helper.php
+/public/css/
+/public/img/
+/public/js/
+/public/workbox-v*
+/public/mix-manifest.json
+/public/precache-manifest.*
+/public/service-worker.js
