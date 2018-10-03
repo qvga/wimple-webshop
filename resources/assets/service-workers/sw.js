@@ -22,9 +22,3 @@ workbox.routing.registerRoute(/\.(?:png|gif|jpg|svg)$/,
         cacheName: 'images-cache'
     })
 );
-
-workbox.routing.registerRoute('/',
-    workbox.strategies.staleWhileRevalidate({
-        cacheName: 'index-cache',
-    })
-);
