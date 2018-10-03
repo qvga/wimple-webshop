@@ -1,5 +1,12 @@
 
 
+
+workbox.precaching.precacheAndRoute([
+    {url: '/index.html', revision: 'k49fjwdl'},
+].concat(self.__precacheManifest));
+
+workbox.routing.registerNavigationRoute('/index.html');
+
 workbox.routing.registerRoute('https://fonts.googleapis.com/(.*)',
     workbox.strategies.cacheFirst({
         cacheName: 'googlefonts-cache',
